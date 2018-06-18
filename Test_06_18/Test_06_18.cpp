@@ -104,7 +104,7 @@ void Insert(STUD p) {//添加病人
 
 	scanf("%s", &NEW->data.doctor);
 
-	if (CheckedExist(p,NEW->data.id,NEW->data.name) == true) {
+	if (CheckedExist(p,NEW->data.id,NEW->data.name) == true) {//检测病人是否已经存在
 		printf("系统提示：病人已经存在");
 		return;
 	}
@@ -263,7 +263,7 @@ void PrintAll(STUD p) {//遍历打印
 
 }
 
-void ChangePatient(STUD p) {
+void ChangePatient(STUD p) {//修改病人病例信息
 	long id;
 	printf("系统提示：请输入要修改的病人编号：\n");
 	scanf("%d", &id);
@@ -303,7 +303,7 @@ void ChangePatient(STUD p) {
 
 	}
 }
-void TotalPatient(STUD p){
+void TotalPatient(STUD p){//计算全部病人个数
 	int num=0;
 	while(p->next!=NULL){
 		num++;
