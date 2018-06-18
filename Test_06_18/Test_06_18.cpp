@@ -1,7 +1,6 @@
 // Test_06_18.cpp: 定义控制台应用程序的入口点。
 //
 
-#include "stdafx.h"
 #include"stdio.h"
 #include"string"
 #include"stdlib.h"
@@ -117,7 +116,7 @@ void Insert(STUD p) {//添加病人
 	printf("系统提示：添加成功\n");
 }
 
-void Deleted(STUD p) {//删除病人
+void Deleted(STUD p) {//删除学生
 
 	long id;
 
@@ -264,13 +263,60 @@ void PrintAll(STUD p) {//遍历打印
 
 }
 
+void ChangePatient(STUD p) {
+	long id;
+	printf("系统提示：请输入要修改的病人编号：\n");
+	scanf("%d", &id);
+	if (!CheckedExist(p, id, NULL)) {
+		printf("系统提示：查找失败,或姓名错误，请重新尝试，操作结束\n");
+		return;
+	}
+	while (p->next != NULL)
 
+	{
+
+		if (p->next->data.id==id)
+
+		{
+			printf("系统提示：查找成功!\n");
+
+			printf("病号:\t%d\n输入要修改的值：", p->next->data.id);
+			scanf("%ld", &p->next->data.id);
+			printf("姓名:\t%s\n输入要修改的值：", p->next->data.name);
+			scanf("%s", &p->next->data.name);
+			printf("性别:\t%s\n输入要修改的值：", p->next->data.sex);
+			scanf("%s", &p->next->data.sex);
+			printf("电话:\t%s\n输入要修改的值：", p->next->data.phone);
+			scanf("%s", &p->next->data.phone);
+			printf("病例描述:  %s\n输入要修改的值：", p->next->data.illness);
+			scanf("%s", &p->next->data.illness);
+			printf("治疗药物:  %s\n输入要修改的值：", p->next->data.medicine);
+			scanf("%s", &p->next->data.medicine);
+			printf("主治医师:  %s\n输入要修改的值：", p->next->data.doctor);
+			scanf("%s", &p->next->data.doctor);
+			printf("系统提示：修改成功");
+			return;
+
+		}
+
+		p = p->next;
+
+	}
+}
+void TotalPatient(STUD p){
+	int num=0;
+	while(p->next!=NULL){
+		num++;
+		p=p->next;
+	}
+	printf("病人总数：%d个病人\n",num);
+}
 void DisplaySelectMessage() {
 	printf("=======================病人病例管理系统==============================\n");
 	printf("\t1.录入病人病例信息\t\t2.通过病号查找病人\n");
 	printf("\t3.通过姓名查找病人\t\t4.打印全部病人信息\n");
-	//printf("\t5.录入病人病例信息\t\t6.查找病人病例信息\n");
-	printf("\t5.删除病人病例信息\t\t6.退出病例管理系统\n");
+	printf("\t5.更改病人病例信息\t\t6.统计病人个数信息\n");
+	printf("\t7.删除病人病例信息\t\t8.退出病例管理系统\n");
 	printf("=====================================================================\n");
 	printf("系统提示：请输入你的选择：\n");
 }
@@ -284,6 +330,7 @@ void select() {
 	while (select<1||select>8)
 	{
 		printf("系统提醒：输入的选项无效请重新尝试\n");
+		scanf("%d", &select);
 	}
 	switch (select)
 	{
@@ -291,10 +338,10 @@ void select() {
 	case 2:LookUpById(Phead); break;
 	case 3:LookUpByName(Phead); break;
 	case 4:PrintAll(Phead); break;
-	case 5:Deleted(Phead); break;
-	case 6:return; break;
-	//case 7:Deleted(Phead);break;
-	//case 8:return; break;
+	case 5:ChangePatient(Phead); break;
+	case 6:TotalPatient(Phead); break;
+	case 7:Deleted(Phead);break;
+	case 8:return; break;
 	default:printf("系统提醒：发生错误,程序退出！\n");
 		break;
 		}
@@ -308,4 +355,3 @@ int main()
 	return 0;
 
 }
-
