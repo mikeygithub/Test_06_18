@@ -6,7 +6,7 @@
 #include"stdlib.h"
 
 #define N 5
-
+//typedef自己去百度查这个关键字功能
 typedef struct Message//信息结构体
 {
 	long id;//病人编号
@@ -26,8 +26,11 @@ typedef struct student//病例结构体
 
 STUD Create() {//创建链表.初始化病人病例信息
 
-	STUD head, news, end;
+	STUD head, news, end;//分别定义指向头结点，新结点，尾结点的结构体类型指针
 
+	/*
+	
+	*/
 	MES stu[N] = { { 178101,"杨文","男","13788245555","腰间盘突出","阿姆斯特朗炮","杨永信" },
 
 	{ 178102,"张江","男","18288245555","扁桃仁发炎","阿姆斯特朗炮","杨永信" },
