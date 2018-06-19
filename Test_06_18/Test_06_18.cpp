@@ -6,7 +6,9 @@
 #include"stdlib.h"
 
 #define N 5
+
 //typedef自己去百度查这个关键字功能
+
 typedef struct Message//信息结构体
 {
 	long id;//病人编号
@@ -29,7 +31,7 @@ STUD Create() {//创建链表.初始化病人病例信息
 	STUD head, news, end;//分别定义指向头结点，新结点，尾结点的结构体类型指针
 
 	/*
-	
+	将一些病人信息添加到链表
 	*/
 	MES stu[N] = { { 178101,"杨文","男","13788245555","腰间盘突出","阿姆斯特朗炮","杨永信" },
 
@@ -41,31 +43,31 @@ STUD Create() {//创建链表.初始化病人病例信息
 
 	{ 178105,"刘宁","男","13788245555","腰间盘突出","阿姆斯特朗炮","杨永信" } };
 
-	head = end = (STUD)malloc(sizeof(STU));
+	head = end = (STUD)malloc(sizeof(STU));//堆区分配头和尾指针内存
 
 	for (int i = 0; i < N; i++) {
 
-		news = (STUD)malloc(sizeof(STU));
+		news = (STUD)malloc(sizeof(STU));//堆区分配结点内存
 
-		news->data = stu[i];
+		news->data = stu[i];//加入信息
 
-		end->next = news;
+		end->next = news;//将尾指针下一个结点指向新结点
 
-		end = news;
+		end = news;//重新赋值尾指针
 
-		end->next = NULL;
+		end->next = NULL;//尾指针指向NULL
 	}
-	return head;
+	return head;//返回链表头结点指针
 
 }
 
 bool CheckedExist(STUD p, long id, char name[10]) {//判断病人是否已经存在
 	while (p->next != NULL)
 	{
-		if (p->next->data.id == id) {
+		if (p->next->data.id == id) {//匹配ID
 			return true;
 		}
-		else if (strcmp(p->next->data.name, name) == 0) {
+		else if (strcmp(p->next->data.name, name) == 0) {//匹配名字
 			return true;
 		}
 		p = p->next;
@@ -133,10 +135,10 @@ void Deleted(STUD p) {//删除学生
 
 		if (id == p->next->data.id) {
 
-			STUD q = p->next;
-			p->next = p->next->next;
+			STUD q = p->next;//获取要删除的结点指针
+			p->next = p->next->next;//指针下移
 
-			free(q);
+			free(q);//释放堆区内存
 
 			printf("系统提示：删除成功\n");
 
@@ -205,7 +207,7 @@ void LookUpByName(STUD p) {//通过姓名查找病人病例
 
 	{
 
-		if (strcmp(p->next->data.name, name) == 0)
+		if (strcmp(p->next->data.name, name) == 0)//匹配名字
 
 		{
 			printf("系统提示：查找成功!\n");
